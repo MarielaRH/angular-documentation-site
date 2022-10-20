@@ -1,0 +1,13 @@
+<div class="menu-wrapper">
+  <div class="p-3 flex justify-content-center">
+    <p class="menu-item-label">Documentación</p>
+  </div>
+  <ng-container *ngFor="let item of items">
+    <div class="flex p-2 menu-item flex align-items-center" [routerLink]="item.routerLink" routerLinkActive="menu-item-active"
+      [routerLinkActiveOptions]="{exact: true}"
+      [ngClass]="showOnlyIcon ? 'justify-content-center' : 'justify-content-start'" [pTooltip]="showOnlyIcon ? item.label : ''">
+      <i [class]="item.icon + ' p-1'"></i>
+      <p class="menu-item-label m-0 pl-3">{{item.label}}</p>
+    </div>
+  </ng-container>
+</div>
