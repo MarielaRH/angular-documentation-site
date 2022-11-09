@@ -1,0 +1,12 @@
+<button
+  class="button"
+  (click)="navigate()"
+  [routerLink]="routerLink"
+  routerLinkActive="button_active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  <span class="button_lg">
+    <span class="button_sl"></span>
+    <span class="button_text">{{ tab.name }}</span>
+  </span>
+</button>

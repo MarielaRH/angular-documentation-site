@@ -1,0 +1,17 @@
+.background-shorcut{
+    background-color: rgb(50, 106, 190, 0.7);
+    border-radius: 10px;
+    max-height: 100px;
+    cursor: pointer;
+    transition:  all 0.2s linear;
+    scale: 1;
+
+    &:hover{
+        transform: scale(0.98);
+        transition:  all 0.3s linear;
+    }
+}
+
+i{
+    font-size: 1.2rem;
+}

@@ -15,6 +15,10 @@ import { SharedModule } from '../shared/shared.module';
 import { AppMenuComponent } from './containers/layout/app-menu/app-menu.component';
 import { AppMainPageComponent } from './containers/layout/app-main-page/app-main-page.component';
 import { PrimengModule } from '../primeng/primeng.module';
+import { DefinitionDirectivesComponent } from './containers/directives/definition-directives/definition-directives.component';
+import { AttributeDirectiveComponent } from './containers/directives/attribute-directive/attribute-directive.component';
+import { ComponentsDirectiveComponent } from './containers/directives/components-directive/components-directive.component';
+import { StructuralDirectiveComponent } from './containers/directives/structural-directive/structural-directive.component';
 
 
 
@@ -32,6 +36,10 @@ import { PrimengModule } from '../primeng/primeng.module';
     ChangeDetectorComponent,
     AppMainPageComponent,
     AppMenuComponent,
+    AttributeDirectiveComponent,
+    DefinitionDirectivesComponent,
+    ComponentsDirectiveComponent,
+    StructuralDirectiveComponent
   ],
   imports: [
     CommonModule,

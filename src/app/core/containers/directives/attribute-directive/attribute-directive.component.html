@@ -1,0 +1,226 @@
+<p>
+  Las directivas de atributos son aquellas que se usan como atributos en los
+  elementos html, de ahí deriva su nombre. Estas se encargan de modificar el
+  comportamiento y la apariencia de un elemento del DOM. <br /><br />
+  Angular por defecto provee las siguientes directivas de atributos:
+</p>
+<p-fieldset legend="ngClass" class="m-3">
+  <p>
+    La directiva de atributo ngClass añade y elimina clases de un elemento del
+    DOM. Estas pueden asignarse de diferentes maneras: <br />
+  </p>
+
+  <prism-code [language]="code.html" [code]="code.dNgClass"></prism-code>
+</p-fieldset>
+<p-fieldset legend="ngStyle" class="m-3">
+  <p>
+    La directiva de atributo ngStyle actualiza los estilos del elemento que lo
+    contiene. Esta directiva puede contener una o más propiedades de estilos,
+    estas se definen como pares de clave/valor separados por dos puntos ( : ),
+    en donde la clave es el nombre del estilo (con un sufijo opcional como
+    'height.px') y el valor es una expresión para ser evaluada. Si al evaluar la
+    expresión da como resultado un valor no nulo, este es asignado a la
+    propiedad de estilo, pero si el resultado de la evaluación es nulo, el
+    estilo se omite.
+  </p>
+
+  <prism-code [language]="code.html" [code]="code.dNgStyle"></prism-code>
+</p-fieldset>
+<p-fieldset legend="Crea tu propia directiva de atributo" class="m-3">
+  <p class="title">CREANDO UN DIRECTIVA DE ATRIBUTO</p>
+  <p>
+    Para crear nuestras propias directivas lo primero que se debe hacer es
+    correr el comando CLI.
+  </p>
+  <prism-code [language]="code.html" [code]="code.cliText"></prism-code>
+  <p>
+    Esto generará un archivo que tendrá la extensión directive.ts y contendrá la
+    siguientes estructura.
+  </p>
+  <prism-code [language]="code.ts" [code]="code.dStructure"></prism-code>
+  <p>
+    Se puede visualizar que el archivo que generó el CLI de angular es una clase
+    como la que se genera en los componentes. La diferencia es que en este
+    archivo en lugar de encontrar el decorador @Component se encontrará el
+    decorador@Directive, dentro del cual se especificará el selector con el que
+    se podrá hacer uso de la directiva.
+
+    <br /><br />
+
+    Vamos a trabajar dentro del archivo directive.ts que generó el CLI y
+    crearemos una directiva que agregue una transición de estilos cada vez que
+    el usuario coloque el mouse sobre un elemento y que vuelva a la normalidad
+    cuando el usuario salga del elemento.
+
+    <br /><br />
+
+    Para eso primero dentro del constructor agregamos a ElementRef (ElementRef
+    es una referencia al elemento que contenga la directiva como atributo).
+  </p>
+
+  <prism-code [language]="code.ts" [code]="code.dConstructor"></prism-code>
+
+  <p>
+    Luego lo siguiente es analizar cuál es el evento del usuario que queremos
+    detectar para que la directiva se active. En este caso para la directiva que
+    estamos creando haremos uso de los eventos mouseenter y mouseleave.
+
+    <br /><br />
+    El evento mouseenter es un evento que se activa en un elemento cuando el
+    cursor entra a este. Pero solo se activa con la entrada al elemento padre,
+    es decir si el elemento contiene elementos hijos el evento no se disparará
+    entre las transiciones del elemento padre al hijo o viceversa.
+
+    <br /><br />
+    El evento mouseleave al contrario que mouseenter es un evento que se activa
+    cuando el cursor sale del elemento, al igual que con mouseenter este evento
+    solo se dispara cuando se sale del elemento padre, si el elemento contiene
+    hijos se omiten las transiciones de un elemento padre a un elemento hijo o
+    viceversa.
+
+    <br /><br />
+    Para conocer otros eventos del navegador que están disponibles puedes
+    visitar
+    <a
+      class="highlight-text third"
+      href="https://developer.mozilla.org/es/docs/Web/Events"
+      >Lista de eventos del navegador</a
+    >
+
+    <br /><br />
+
+    Ahora bien, luego de que sabemos cuales son los eventos del navegador que
+    usaremos lo siguiente es agregar un listener para escuchar estos eventos.
+    Para ello dentro de las directivas hay una forma especial para declarar
+    estos listener, ya que aquí se hace uso del decorador @HostListener, el cual
+    es un decorador que declara un evento del DOM para escuchar y además
+    proporciona un método controlador en respuesta al evento.
+
+    <br /><br />
+
+    La sintaxis de un @HostListener es la siguiente:
+  </p>
+
+  <prism-code [language]="code.ts" [code]="code.dHostlistener"></prism-code>
+
+  <p>
+    Una vez que hemos definido los dos HostListener y un método que se encarga
+    de la asignación de las clases a la referencia del elemento html , la
+    directiva se vería de esta forma:
+  </p>
+  <prism-code [language]="code.ts" [code]="code.dComplete"></prism-code>
+  <prism-code [language]="code.scss" [code]="code.dClass"></prism-code>
+
+  <p>
+    Finalmente para implementar la directiva lo único que hay que hacer es
+    colocar el selector que fue definido para la directiva como un atributo al
+    elemento en la cual se desea aplicar.
+  </p>
+  <prism-code [language]="code.html" [code]="code.dHtml"></prism-code>
+
+  <p>
+    De esto modo nuestra directiva estará funcionando de la siguiente manera:
+  </p>
+  <div class="flex justify-content-center p-4">
+    <span animationText>
+      Pon el cursor sobre mi para activar la directiva!!!</span
+    >
+  </div>
+
+  <p-divider type="dashed"></p-divider>
+  <p class="title">PASANDO UNO O VARIOS VALORES A UNA DIRECTIVA DE ATRIBUTO</p>
+
+  <p>
+    Las directivas también aceptan parámetros y lo hacen por medio del decorador
+    @Input, este decorador marca una propiedad de un componente como propiedad
+    de entrada. <br /><br />
+
+    Para este ejemplo crearemos una directiva que cambiará el color de fondo de
+    un texto al hacer hover sobre el texto, pero el color de fondo podrá ser
+    cambiado dinámicamente por el usuario.
+
+    <br /><br />
+
+    Lo primero que haremos será crear una nueva directiva, en la cual se
+    configurarán dos @HostListener (uno para escuchar el evento mouseenter y el
+    otro para escuchar el evento mouseleave), un método que se encargará de
+    asignar el color del fondo y dos propiedades de entrada una recibirá el
+    color que el usuario ha seleccionado para el fondo y la otra recibirá el
+    color del texto el cual viene ligado a la selección del fondo. De esta
+    manera nuestra directiva se verá de la siguiente forma:
+  </p>
+
+  <prism-code [language]="code.ts" [code]="code.dParams"></prism-code>
+  <prism-code [language]="code.scss" [code]="code.dParamsClass"></prism-code>
+
+  <p>
+    Luego para utillizar la directiva y pasarle el color lo haríamos de la
+    siguiente manera:
+  </p>
+
+  <prism-code [language]="code.ts" [code]="code.dParamsVar"></prism-code>
+  <prism-code [language]="code.html" [code]="code.dParamsHtml"></prism-code>
+
+  <p>
+    Si la directiva recibe únicamente un parámetro este puede usar el mismo
+    nombre que el selector de la directiva. Por lo tanto el selector actuará
+    como indicador del uso de la directiva dentro del elemento en el que se
+    encuentra y a su vez como parámetro de entrada.
+
+    <br /><br />
+
+    Si la directiva recibe más de un parámetro basta con colocar el nombre de la
+    variable @Input que fue definida dentro de la directiva y pasarle el valor
+    deseado.
+
+    <br /><br />
+    Hay que tener en cuenta que si los valores que se pasarán como parámetros
+    están guardados dentro de variables, será necesario especificar el binding
+    haciendo uso de los corchetes ( [] ) al pasar el o los parámetros.
+
+    <br /><br />
+    <strong>
+      Ejemplo:
+      <br />
+
+      [ nombreParametro ] = " variableContenedora ";
+    </strong>
+
+    <br /><br />
+    Pero si el valor a pasar no está guardado dentro de una variable y puede
+    pasarse directamente, no es necesario hacer uso de los corchetes ( [] ).
+    <br /><br />
+    <strong>
+      Ejemplo:
+      <br />
+      nombreParámetro = " 'valor' ";
+    </strong>
+  </p>
+
+  <p>Finalmente el resultado de nuestra directiva sería el siguiente:</p>
+
+  <div class="grid justify-content-center">
+    <p
+      class="col-12 flex justify-content-center"
+      style="font-size: 1.2erm; color: yellowgreen; font-weight: 600"
+    >
+      Selecciona un color para el fondo del texto
+    </p>
+    <div *ngFor="let item of colors" class="field-checkbox p-3">
+      <p-radioButton
+        [value]="item"
+        [inputId]="item.key"
+        name="colors"
+        [(ngModel)]="color"
+        [ngModelOptions]="{ standalone: true }"
+      ></p-radioButton>
+      <label [for]="item.key">{{ item.key }}</label>
+    </div>
+  </div>
+
+  <div class="flex justify-content-center p-3">
+    <div class="p-3" [appHighlight]="color.background" [colorFont]="color.font" style="font-weight: 500">
+      Pon el mouse sobre mí para ver el color de mi fondo!
+    </div>
+  </div>
+</p-fieldset>

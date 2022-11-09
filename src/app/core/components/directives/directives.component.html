@@ -1,1 +1,104 @@
-<p>directives works!</p>
+<div class="global-container m-0 p-0">
+  <div class="col">
+    <div class="p-3 title-section">
+      <p class="p-0 m-0 animated fadeInRight">DIRECTIVAS</p>
+    </div>
+    <div class="col-12 flex">
+      <ng-container *ngFor="let tab of tabsDirectives">
+        <div class="p-2">
+          <tab-component
+            [tab]="tab"
+            [routerLink]="RouterInformation.directives + '/' + tab.path"
+          ></tab-component>
+        </div>
+      </ng-container>
+    </div>
+
+    <ng-container *ngIf="activeIndex === tabsDirectives[0].index">
+      <div scrollContainer class="flex flex-column justify-content-between">
+        <definition-directives></definition-directives>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeIndex === tabsDirectives[1].index">
+      <div scrollContainer class="flex flex-column justify-content-between">
+        <components-directive></components-directive>
+        <div class="col-12 flex">
+          <shorcut
+            [nextReading]="tabsDirectives[0]"
+            (tabSelected)="onChangeTab($event)"
+            [back]="true"
+            class="col-6"
+          ></shorcut>
+          <shorcut
+            [nextReading]="tabsDirectives[2]"
+            (tabSelected)="onChangeTab($event)"
+            [next]="true"
+            class="col-6"
+          ></shorcut>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeIndex === tabsDirectives[2].index">
+      <div scrollContainer class="flex flex-column justify-content-between">
+        <attribute-directive></attribute-directive>
+        <div class="col-12 flex">
+          <shorcut
+            [nextReading]="tabsDirectives[1]"
+            (tabSelected)="onChangeTab($event)"
+            [back]="true"
+            class="col-6"
+          ></shorcut>
+          <shorcut
+            [nextReading]="tabsDirectives[3]"
+            (tabSelected)="onChangeTab($event)"
+            [next]="true"
+            class="col-6"
+          ></shorcut>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeIndex === tabsDirectives[3].index">
+      <div scrollContainer class="flex flex-column justify-content-between">
+        <structural-directive></structural-directive>
+        <shorcut
+          [nextReading]="tabsDirectives[2]"
+          (tabSelected)="onChangeTab($event)"
+          [back]="true"
+        ></shorcut>
+      </div>
+    </ng-container>
+
+    <!-- <p-tabView (onChange)="onChangeTab($event)" [activeIndex]="activeIndex">
+            <p-tabPanel header="Definición">
+                <div scrollContainer class="flex flex-column justify-content-between">
+                    <definition-directives></definition-directives>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Directivas de componentes">
+                <div scrollContainer class="flex flex-column justify-content-between">
+                    <components-directive></components-directive>
+                    <div class="col-12 flex">
+                        <shorcut [nextReading]="tabsDirectives[0]" (tabSelected)="onChangeTab($event)" [back]="true" class="col-6"></shorcut>
+                        <shorcut [nextReading]="tabsDirectives[2]" (tabSelected)="onChangeTab($event)" [next]="true" class="col-6"></shorcut>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Directivas de atributo">
+                <div scrollContainer class="flex flex-column justify-content-between">
+                    <attribute-directive></attribute-directive>
+                    <div class="col-12 flex">
+                        <shorcut [nextReading]="tabsDirectives[1]" (tabSelected)="onChangeTab($event)" [back]="true" class="col-6"></shorcut>
+                        <shorcut [nextReading]="tabsDirectives[3]" (tabSelected)="onChangeTab($event)" [next]="true" class="col-6"></shorcut>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Directivas de estructurales">
+                <div scrollContainer class="flex flex-column justify-content-between">
+                    <structural-directive></structural-directive>
+                        <shorcut [nextReading]="tabsDirectives[2]" (tabSelected)="onChangeTab($event)" [back]="true"></shorcut>
+                </div>
+            </p-tabPanel>
+        </p-tabView> -->
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div style="height: 100%" class="flex flex-column justify-content-between">
+  <div class="pb-3">
+    <p class="title mt-0">¿Qué es una directiva?</p>
+    <p class="content">
+      En angular las directivas son clases que añaden
+      comportamientos a elementos html, los cuales se ejecutan sobre el DOM
+      (Document Object Model).
+      <br /><br />
+      Con las directivas podremos modificar la estructura del DOM
+      añadiendo/manipulando o eliminando directamente desde la vista HTML y
+      modificar la apariencia general de un elemento
+      agragando/eliminando clases o una propiedad en concreto.
+    </p>
+
+    <p class="mb-0 title">Tipos de directivas</p>
+    <div class="grid display-content-center m-0 pt-3">
+      <ng-container *ngFor="let type of directiveTypes">
+        <div class="col-12 md:col-6 xl:col-4" *ngIf="type.content">
+          <item-card [tab]="type"></item-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
