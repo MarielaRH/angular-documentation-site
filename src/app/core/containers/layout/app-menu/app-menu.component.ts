@@ -25,7 +25,7 @@ export class AppMenuComponent implements OnInit {
       {
         label: 'Directivas',
         icon: 'fa-solid fa-asterisk',
-        routerLink: ['/app/directives/definition'],
+        routerLink: ['/app/directives'],
       },
       {
         label: 'Pipes',
@@ -73,5 +73,10 @@ export class AppMenuComponent implements OnInit {
   resizeListener() {
     this.showOnlyIcon =
       window.innerWidth <= 999 ? (this.showOnlyIcon = true) : false;
+  }
+
+  verifyRoute(itemRoute: string = ''){
+
+    return 'menu-item-active'
   }
 }

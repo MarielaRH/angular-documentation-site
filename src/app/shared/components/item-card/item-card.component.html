@@ -1,10 +1,12 @@
 <div class="card-container">
     <div class="card-content text-center">
         <div class="co-12">
-            <i></i>
             <p class="card-title m-0 ">{{tab.name}}</p>
         </div>
-        <p class="card-information">{{tab.content}}</p>
+        <div *ngIf="showIcon">
+            <img [src]="tab.icon" alt="Icono representativo de una directiva" width="100">
+        </div>
+        <p class="card-information m-0">{{tab.content}}</p>
     </div>
-    <div class=" hover-underline-animation p-1" (click)="goToTab(tab)">Leer más</div>
+    <div *ngIf="showLink" class="hover-underline-animation p-1 mt-3" (click)="goToTab(tab)">Leer más</div>
 </div>

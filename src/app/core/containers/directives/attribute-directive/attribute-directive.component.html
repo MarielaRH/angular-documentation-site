@@ -1,10 +1,11 @@
 <p>
   Las directivas de atributos son aquellas que se usan como atributos en los
   elementos html, de ahí deriva su nombre. Estas se encargan de modificar el
-  comportamiento y la apariencia de un elemento del DOM. <br /><br />
-  Angular por defecto provee las siguientes directivas de atributos:
+  comportamiento y la apariencia de un elemento del DOM.
 </p>
-<p-fieldset legend="ngClass" class="m-3">
+<p class="title">DIRECTIVAS DE ATRIBUTOS</p>
+<p>Angular por defecto provee las siguientes directivas de atributos:</p>
+<p-fieldset legend="ngClass" class="m-3 normal">
   <p>
     La directiva de atributo ngClass añade y elimina clases de un elemento del
     DOM. Estas pueden asignarse de diferentes maneras: <br />
@@ -12,7 +13,7 @@
 
   <prism-code [language]="code.html" [code]="code.dNgClass"></prism-code>
 </p-fieldset>
-<p-fieldset legend="ngStyle" class="m-3">
+<p-fieldset legend="ngStyle" class="m-3 normal">
   <p>
     La directiva de atributo ngStyle actualiza los estilos del elemento que lo
     contiene. Esta directiva puede contener una o más propiedades de estilos,
@@ -26,8 +27,8 @@
 
   <prism-code [language]="code.html" [code]="code.dNgStyle"></prism-code>
 </p-fieldset>
-<p-fieldset legend="Crea tu propia directiva de atributo" class="m-3">
-  <p class="title">CREANDO UN DIRECTIVA DE ATRIBUTO</p>
+<p class="title">DIRECTIVA DE ATRIBUTO PERSONALIZADA</p>
+<p-fieldset legend="Crea tu propia directiva de atributo" class="m-3 normal">
   <p>
     Para crear nuestras propias directivas lo primero que se debe hacer es
     correr el comando CLI.

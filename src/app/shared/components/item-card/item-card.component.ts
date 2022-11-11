@@ -9,7 +9,8 @@ import { RouteInformation } from '../../constants/route-information.conts';
 })
 export class ItemCardComponent implements OnInit {
   @Input() tab: any;
-
+  @Input() showLink: boolean = false;
+  @Input() showIcon: boolean = false;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -20,3 +21,4 @@ export class ItemCardComponent implements OnInit {
   }
 
 }
+

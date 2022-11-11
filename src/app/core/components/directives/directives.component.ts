@@ -18,11 +18,15 @@ export class DirectivesComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(({tab}) => {
-      this.tabsDirectives.forEach(directiveTab => {
-        if(tab && directiveTab.path === tab ){
-          this.activeIndex = this.tabsDirectives.indexOf(directiveTab);
-        }
-      })
+      if(tab){
+        this.tabsDirectives.forEach(directiveTab => {
+          if(tab && directiveTab.path === tab ){
+            this.activeIndex = this.tabsDirectives.indexOf(directiveTab);
+          }
+        })
+      }else{
+        this.onChangeTab({index: 0});
+      }
     })
   }
 

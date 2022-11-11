@@ -1,5 +1,5 @@
 .card-container{
- min-height: 200px;
+ min-height: 100%;
  border-radius: 10px;
  background: rgb(0, 0, 0, 0.3);
  transition: 0.5s ease-out;
@@ -9,12 +9,25 @@
  align-items: center;
  justify-content: space-between;
  padding: 1rem;
+
+ & .card-content img{
+ transition: all 0.3s linear;
+ }
+
+ &:hover{
+  img{
+    transform: scale(1.1);
+    transition: all 0.3s linear;
+  }
+ }
+
 }
 
 .card-content {
  color: black;
  place-content: center;
  display: grid;
+ justify-content: center;
  gap: .5em;
 }
 

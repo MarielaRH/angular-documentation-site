@@ -1,1 +1,20 @@
-<p>components-directive works!</p>
+<div style="height: 100%" class="flex flex-column justify-content-between">
+  <p>
+    Las directivas de componente van asociadas a una clase, esto vuelve a una
+    clase corriente un component el cual se componen de tres archivos:
+  </p>
+  <p-fieldset legend="Componente" class="m-3 normal">
+    <div class="grid display-content-center m-0 pt-3">
+      <ng-container *ngFor="let file of componentsFile">
+        <div class="col-12 md:col-6 xl:col-4" *ngIf="file.content">
+          <item-card [tab]="file" style="height: 100%"></item-card>
+        </div>
+      </ng-container>
+    </div>
+  </p-fieldset>
+  <ng-container *ngFor="let item of componentsFileExamples">
+    <p-fieldset [legend]="item.legend" class="m-3 example">
+      <prism-code [code]="item.codeExmaple" [language]="item.type"></prism-code>
+    </p-fieldset>
+  </ng-container>
+</div>

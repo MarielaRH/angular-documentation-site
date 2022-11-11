@@ -45,7 +45,7 @@ import { StructuralDirectiveComponent } from './containers/directives/structural
     CommonModule,
     CoreRoutingModule,
     SharedModule,
-    PrimengModule
+    PrimengModule,
   ]
 })
 export class CoreModule { }

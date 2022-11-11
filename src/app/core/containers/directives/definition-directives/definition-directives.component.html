@@ -1,24 +1,30 @@
-<div style="height: 100%" class="flex flex-column justify-content-between">
-  <div class="pb-3">
-    <p class="title mt-0">¿Qué es una directiva?</p>
+<div style="height: 100%">
+    <p class="title mt-0">¿QUE ES UNA DIRECTIVA?</p>
     <p class="content">
       En angular las directivas son clases que añaden
       comportamientos a elementos html, los cuales se ejecutan sobre el DOM
       (Document Object Model).
       <br /><br />
-      Con las directivas podremos modificar la estructura del DOM
-      añadiendo/manipulando o eliminando directamente desde la vista HTML y
-      modificar la apariencia general de un elemento
-      agragando/eliminando clases o una propiedad en concreto.
+      Con las directivas podremos hacer lo siguiente:
     </p>
-
-    <p class="mb-0 title">Tipos de directivas</p>
-    <div class="grid display-content-center m-0 pt-3">
+    <ul>
+      <li> Modificar la estructura del DOM
+      añadiendo/manipulando o eliminando directamente desde la vista HTML.</li>
+      <li> Modificar la apariencia general de un elemento
+      agregando/eliminando clases o una propiedad en concreto.</li>
+    </ul>
+    <p>
+      Angular por defecto nos brinda una serie de directivas listas para ser utilizadas
+      las cuales son NgClass, NgStyle, *ngIf, *ngFor, *ngSwitch, etc. Sin embargo Angular ofrece
+      la posibilidad de crear directivas personalizadas según la necesidad que se tenga.
+    </p>
+    <p class="title">TIPOS DE DIRECTIVAS</p>
+    <p>Angular clasifica las directivas que nos pone a disposición en tres grupos:</p>
+    <div class="grid display-content-center m-0">
       <ng-container *ngFor="let type of directiveTypes">
-        <div class="col-12 md:col-6 xl:col-4" *ngIf="type.content">
-          <item-card [tab]="type"></item-card>
+        <div class="col-12 md:col-6 xl:col-4 pt-0 pb-0" *ngIf="type.content">
+          <item-card [tab]="type" [showIcon]="true" [showLink]="true"></item-card>
         </div>
       </ng-container>
     </div>
-  </div>
 </div>

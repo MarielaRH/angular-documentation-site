@@ -1,4 +1,4 @@
-export const DIRECTIVES = {
+export const ATTRIBUTE_DIRECTIVE = {
   dNgClass: `
     // Las clases en ngClass pueden asignarser por medio de:
 

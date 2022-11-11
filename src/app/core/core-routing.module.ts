@@ -22,6 +22,10 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: "directives",
+    component: DirectivesComponent,
+  },
+    {
     path: "directives/:tab",
     component: DirectivesComponent,
   },

@@ -9,6 +9,8 @@ import {DividerModule} from 'primeng/divider';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import {InputSwitchModule} from 'primeng/inputswitch';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -21,7 +23,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     DividerModule,
     MessagesModule,
     MessageModule,
-    RadioButtonModule
+    RadioButtonModule,
+    InputSwitchModule
   ],
   exports: [
     TooltipModule,
@@ -32,7 +35,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     DividerModule,
     MessagesModule,
     MessageModule,
-    RadioButtonModule
+    RadioButtonModule,
+    InputSwitchModule
   ],
 })
 export class PrimengModule {}

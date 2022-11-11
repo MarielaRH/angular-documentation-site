@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DIRECTIVES } from './directives-prism-code.const';
+import { ATTRIBUTE_DIRECTIVE } from './attribute-directive-prism-code.const';
 
 @Component({
   selector: 'attribute-directive',
@@ -7,7 +7,7 @@ import { DIRECTIVES } from './directives-prism-code.const';
   styleUrls: ['./attribute-directive.component.scss'],
 })
 export class AttributeDirectiveComponent implements OnInit{
-  code = DIRECTIVES;
+  code = ATTRIBUTE_DIRECTIVE;
   color = {
     key: 'default',
     background: '#f9d7f2',

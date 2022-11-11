@@ -1,1 +1,63 @@
-<p>structural-directive works!</p>
+<div style="height: 100%">
+  <p>
+    Las directivas estructurales son las que modifican directamente el DOM ya
+    sea agregando o eliminando elementos según una condición. Estas directivas
+    son fáciles de reconocer ya que son antecedidas por un asterísco (*) seguido
+    del nombre de la directiva.
+
+    <br /><br />
+    Es importante conocer que el * que va antes del nombre de la directiva
+    permite que Angular envuelva el elemento huésped en la etiqueta ng-template
+    durante el proceso de transpilación del código.
+
+    <br /><br />
+    Por lo tanto si tenemos algo como esto:
+
+    <br /><br />
+    Angular lo transformaría a algo como esto:
+
+    <br /><br />
+    Aquí lo que ocurre es que el ngIf pasa a ser parte del elemento ng-template
+    y el elemento huésped que en este caso es un div pasa a ser hijo de
+    ng-template.
+  </p>
+  <p class="title">DIRECTIVAS ESTRUCTURALES</p>
+  <p>
+    Angular nos ofrece tres directivas estructurales por defecto las cuales son:
+  </p>
+  <p-fieldset legend="*ngIf" class="m-3 normal">
+    <p>
+      La directiva *ngIf permite mostrar u ocultar un elemento del DOM en base a
+      una condición.
+      <br /><br />
+      Por ejemplo supongamos que se desea mostrar un texto específico según el
+      estado de un input-switch, para hacer ese renderizado de manera dinámica
+      lo haríamos de la siguiente forma:
+    </p>
+
+    <prism-code [language]="code.html" [code]="code.codeHtmlNgIf"></prism-code>
+    <prism-code [language]="code.ts" [code]="code.codeTsNgIf"></prism-code>
+
+    <div
+      class="col-12 flex flex-column justify-content-center align-items-center"
+    >
+      <p class="mt-3">Activa el interruptor para ver el texto</p>
+      <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+      <p *ngIf="checked; else inactive" class="flex align-items-center">
+        Switch Activo!
+      </p>
+      <ng-template #inactive>
+        <p class="flex align-items-center">Switch Inactivo!</p>
+      </ng-template>
+    </div>
+
+    <p>En esta ocasión hemos usado la palabra reservada else para mostrar un elemento ng-template cuando el interruptor esté apagado (checked = false),
+        en caso de no necesitar mostrar un elemento cuando una condición no se cumpla no se hace uso de la palabra else dentro del ngIf.
+    </p>
+  </p-fieldset>
+  <p-fieldset legend="*ngFor" class="m-3 normal">
+    La directiva *ngFor permite ejecutar bucles sobre elementos del DOM según un
+    lista
+  </p-fieldset>
+  <p-fieldset legend="*ngSwitch" class="m-3 normal"></p-fieldset>
+</div>
