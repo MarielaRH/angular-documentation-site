@@ -1,6 +1,6 @@
 export const TABS_DIRETIVES = [
     {
-        name: "Definición",
+        name: "Definición de directivas",
         path: "definition",
         index: 0
     },

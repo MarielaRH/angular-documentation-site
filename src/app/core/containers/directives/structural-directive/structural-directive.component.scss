@@ -1,0 +1,16 @@
+.item-ng-for{
+    background-color: black;
+    border-radius: 5px;
+    font-weight: bolder;
+    scale: 0.95;
+    transition: all 0.4s;
+    &:hover{
+        scale: 1;
+        transition: all 0.3s;
+    }
+}
+
+p.animate__animated{
+    font-weight: 500;
+    font-size: 1.2rem;
+}

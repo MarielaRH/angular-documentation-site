@@ -9,14 +9,16 @@
     Es importante conocer que el * que va antes del nombre de la directiva
     permite que Angular envuelva el elemento huésped en la etiqueta ng-template
     durante el proceso de transpilación del código.
+  </p>
+  <p>Lo cual se vería de la siguiente manera:</p>
 
-    <br /><br />
-    Por lo tanto si tenemos algo como esto:
+  <prism-code
+    [language]="code.html"
+    [code]="code.angularStructure"
+    style="width: 265px"
+  ></prism-code>
 
-    <br /><br />
-    Angular lo transformaría a algo como esto:
-
-    <br /><br />
+  <p>
     Aquí lo que ocurre es que el ngIf pasa a ser parte del elemento ng-template
     y el elemento huésped que en este caso es un div pasa a ser hijo de
     ng-template.
@@ -30,7 +32,7 @@
       La directiva *ngIf permite mostrar u ocultar un elemento del DOM en base a
       una condición.
       <br /><br />
-      Por ejemplo supongamos que se desea mostrar un texto específico según el
+      Por ejemplo, supongamos que se desea mostrar un texto específico según el
       estado de un input-switch, para hacer ese renderizado de manera dinámica
       lo haríamos de la siguiente forma:
     </p>
@@ -41,7 +43,7 @@
     <div
       class="col-12 flex flex-column justify-content-center align-items-center"
     >
-      <p class="mt-3">Activa el interruptor para ver el texto</p>
+      <p class="mt-3">Activa el interruptor para hacer cambiar el texto</p>
       <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
       <p *ngIf="checked; else inactive" class="flex align-items-center">
         Switch Activo!
@@ -51,13 +53,110 @@
       </ng-template>
     </div>
 
-    <p>En esta ocasión hemos usado la palabra reservada else para mostrar un elemento ng-template cuando el interruptor esté apagado (checked = false),
-        en caso de no necesitar mostrar un elemento cuando una condición no se cumpla no se hace uso de la palabra else dentro del ngIf.
+    <p>
+      En esta ocasión hemos usado la palabra reservada else para mostrar un
+      elemento ng-template cuando el interruptor esté apagado (checked = false),
+      en caso de no necesitar mostrar un elemento cuando una condición no se
+      cumpla no se hace uso de la palabra else dentro del *ngIf.
     </p>
   </p-fieldset>
   <p-fieldset legend="*ngFor" class="m-3 normal">
-    La directiva *ngFor permite ejecutar bucles sobre elementos del DOM según un
-    lista
+    <p>
+      La directiva *ngFor permite ejecutar bucles sobre elementos del DOM según
+      un lista. Para usar *ngFor debemos de hacer uso de algunos elementos:
+    </p>
+
+    <p>Elementos:</p>
+    <ul>
+      <li>
+        Debemos declarar una variable la cual será la contenedora del valor de
+        la iteración
+      </li>
+      <li>Uso de la palabra of</li>
+      <li>Lista a iterar</li>
+      <li>Indice de la interación (opcional)</li>
+    </ul>
+    <p>
+      Para este ejemplo vamos a rellenar un array con nombre de colores y vamos
+      a imprimir cada uno de los items con un *ngFor, para ello realizamos lo
+      siguiente:
+    </p>
+    <prism-code [language]="code.ts" [code]="code.codeTsNgFor"></prism-code>
+    <prism-code [language]="code.html" [code]="code.codeHtmlNgFor"></prism-code>
+    <p>El resultado sería el siguiente:</p>
+    <div class="col-12 grid">
+      <div class="col" *ngFor="let color of colors">
+        <div
+          [ngStyle]="{ 'background-color': color }"
+          class="p-3 text-center item-ng-for"
+        >
+          {{ color }}
+        </div>
+      </div>
+    </div>
   </p-fieldset>
-  <p-fieldset legend="*ngSwitch" class="m-3 normal"></p-fieldset>
+  <p-fieldset legend="*ngSwitch" class="m-3 normal">
+    <p>
+      La directiva *ngSwitch se componen de tres directivas, esas directivas
+      trabajan en conjunto para poder generar un resultado. Estas directivas
+      son:
+    </p>
+
+    <div class="grid display-content-center m-0">
+      <ng-container *ngFor="let type of ngSwitchTypes">
+        <div class="col-12 md:col-6 xl:col-4">
+          <item-card [tab]="type" style="height: 100%"></item-card>
+        </div>
+      </ng-container>
+    </div>
+
+    <p>
+      Para ver como funcionan el ngSwitch haremos el siguiente ejemplo.
+      Trabajaremos con un dropdown el cual contendrá las opciones que
+      compararemos dentro de los ngSwitchCase, cada vez que el contenido del
+      dropdown cambie, el ngSwitch se volverá a ejecutar para mostrar el
+      elemento correcto.
+    </p>
+
+    <prism-code [language]="code.ts" [code]="code.codeTsNgSwitch"></prism-code>
+    <prism-code
+      [language]="code.html"
+      [code]="code.codeHtmlNgSwitch"
+    ></prism-code>
+
+    <p>El ejemplo funcionaría de la siguiente manera :</p>
+
+    <div class="col-12 grid m-0 justify-content-center">
+      <p-dropdown [options]="days" [(ngModel)]="selectedDay"></p-dropdown>
+      <div
+        [ngSwitch]="selectedDay"
+        class="col-12 flex justify-content-center mt-4"
+      >
+        <p *ngSwitchCase="days[0]" class="animate__animated animate__zoomIn text-center">
+          Vamos tu puedes, recibe el inicio de semana con la mejor actitud!
+        </p>
+        <p *ngSwitchCase="days[1]" class="animate__animated animate__zoomIn text-center">
+          La semana avanza rápido, recuerda ponerte metas para obtener mejores
+          resultados.
+        </p>
+        <p *ngSwitchCase="days[2]" class="animate__animated animate__zoomIn text-center">
+          Ya estamos cerca del fin de semana!! Tu puedes, enfócate en tus
+          tareas!
+        </p>
+        <p *ngSwitchCase="days[3]" class="animate__animated animate__zoomIn text-center">
+          Alto ahí! Bebe un café y respira profundo... Ya lo hiciste?...
+          Perfecto ya puedes continuar con tus labores.
+        </p>
+        <p *ngSwitchCase="days[4]" class="animate__animated animate__zoomIn text-center">
+          Este es el día que a todos nos gusta. Verifica si lograste cumplir las
+          metas que definiste para esta semana y trata de dejar todo en orden
+          para la proxima semana!.
+        </p>
+        <p *ngSwitchDefault class="animate__animated animate__zoomIn text-center">
+          Relájate, descansa y disfruta de la paz del fin de semana, Nos vemos
+          el lunes!
+        </p>
+      </div>
+    </div>
+  </p-fieldset>
 </div>

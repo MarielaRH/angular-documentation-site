@@ -10,6 +10,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import {InputSwitchModule} from 'primeng/inputswitch';
     MessagesModule,
     MessageModule,
     RadioButtonModule,
-    InputSwitchModule
+    InputSwitchModule,
+    DropdownModule
   ],
   exports: [
     TooltipModule,
@@ -36,7 +38,8 @@ import {InputSwitchModule} from 'primeng/inputswitch';
     MessagesModule,
     MessageModule,
     RadioButtonModule,
-    InputSwitchModule
+    InputSwitchModule,
+    DropdownModule
   ],
 })
 export class PrimengModule {}
